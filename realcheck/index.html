@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RealCheck: video authenticity analyzer</title>
+<meta name="description" content="Upload a video and see whether the face in it moves naturally. Runs in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top"><strong>RealCheck</strong><a href="#tips">Check before you share</a></header>
+<main>
+  <section class="hero">
+    <h1>Is this video real?</h1>
+    <p>Drop a clip and RealCheck inspects the face frame by frame, right in your browser. Your video never leaves your device.</p>
+    <label id="drop" class="drop" tabindex="0">
+      <input id="file" type="file" accept="video/*" hidden>
+      <span>Drop a video here or choose a file</span>
+      <small>MP4 or WebM, one clear face, under 30 seconds works best</small>
+    </label>
+    <div id="progress" hidden>
+      <div class="bar"><i id="barFill"></i></div>
+      <p id="status" role="status">Loading face model…</p>
+    </div>
+    <video id="preview" controls playsinline hidden></video>
+  </section>
+
+  <section id="result" hidden aria-live="polite">
+    <div id="notEnough" class="note" hidden></div>
+    <div id="full" hidden>
+      <div class="score">
+        <div class="ring" id="ring"><b id="num">0</b></div>
+        <div>
+          <h2 id="verdict"></h2>
+          <p class="muted">Suspicion score from 0 (natural) to 100 (very suspicious). This is a screening tool, not proof.</p>
+          <button id="copy" type="button">Copy result to share</button>
+        </div>
+      </div>
+      <h3>What we measured</h3>
+      <div id="signals"></div>
+      <h3>Suspicion over time</h3>
+      <canvas id="timeline" height="120" role="img" aria-label="Chart of suspicion score across the video timeline"></canvas>
+      <h3>Frames to look at closely</h3>
+      <div id="flagged" class="frames"></div>
+    </div>
+  </section>
+
+  <section id="tips" class="tips">
+    <h2>Check before you share</h2>
+    <ul>
+      <li>Search for the original source. Real events are usually reported by more than one account.</li>
+      <li>Watch the edges of the face, the teeth and the hairline for flicker or blur.</li>
+      <li>Check whether lip movement matches the sound, and whether blinking looks natural.</li>
+      <li>Be most careful with videos that make you angry or afraid. They spread fastest.</li>
+      <li>If you are unsure, do not share it.</li>
+    </ul>
+  </section>
+</main>
+<footer class="foot">Built as a second-year frontend project. Results are estimates from simple face-motion checks and can be wrong.</footer>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
